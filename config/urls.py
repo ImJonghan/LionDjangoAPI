@@ -33,6 +33,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include("api.urls")), # 베이스 코드 느낌 api/products/...
     path('apiset/', include("apiset.urls")), # DRF 느낌 apiset/products/.....
+    path('token/', include("tokenapi.urls")),
+    path('frontbackdev/', include("frontbackdev.urls")),
+    path('filter/', include("filterREST.urls")),
+    path('page/', include("pageREST.urls")),
+    # path('', include("web.urls")),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ]
 

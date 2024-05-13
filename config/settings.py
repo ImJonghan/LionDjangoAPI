@@ -40,8 +40,26 @@ INSTALLED_APPS = [
     'api',
     'apiset',
     'rest_framework',
+    'rest_framework.authtoken', # 토큰 앱
     'drf_yasg',
+    # 'tokenapi',    # token 앱 등록
+    'frontbackdev',
+    'corsheaders', # CORS 문제 해결
+    # 'web',
+    'django_filters', # 검색
+    'filterREST',
+    'pageREST',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.IsAuthenticated',  # 인증된 사용자만 접근 허용
+    # ],
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -51,7 +69,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware', # 추가
+    'django.middleware.common.CommonMiddleware',  # 주의: CorsMiddleware 아래에 있어야 함
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True  # 모든 도메인에서 요청 허용
 
 ROOT_URLCONF = 'config.urls'
 
@@ -70,7 +92,6 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
